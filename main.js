@@ -4,11 +4,11 @@ screen_width = 0;
 screen_height = 0;
 apple = "";
 speak_data = "";
-to_number = "";
+to_number = 0;
 draw_apple = "";
 
 function preload() {
-  pic = loadImage('apple.png');
+  apple = loadImage('apple.png');
 }
 
 function setup() {
@@ -44,15 +44,15 @@ recognition.onresult = function (event) {
 
 function draw() {
   if (draw_apple == "set") {
-    document.getElementById("status").innerHTML = to_number + " Apples drawn";
-    draw_apple = "";
-    for (i = 1; i <= to_number; i++) {
+    for (var i = 1; i <= to_number; i++) {
       x = Math.floor(Math.random() * 700);
       y = Math.floor(Math.random() * 400);
-      image(pic, x, y, 50, 50);
-      document.getElementById("status").innerHTML = to_number + " apples drawn,";
-      speak();
+      image(apple, x, y, 50, 50);
     }
+    document.getElementById("status").innerHTML = to_number + " Apples drawn";
+    speak_data = to_number + "Apples drawn";
+    speak();
+    draw_apple = "";
   }
 }
 
